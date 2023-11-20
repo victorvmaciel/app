@@ -9,4 +9,4 @@ jobs:
       - name: Say Hi
         run: echo "Hello world!!"
       - name: update packages
-        run: sudo apt-get update
+        run: sudo apt update
