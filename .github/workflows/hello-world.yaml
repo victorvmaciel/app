@@ -6,12 +6,11 @@ on:
       - opened
 
 jobs:
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
   merge-pr:
-    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      runs-on: ubuntu-latest
 
     steps:
     - name: Code Checkout
