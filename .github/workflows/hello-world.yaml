@@ -8,15 +8,15 @@ on:
 jobs:
 
   merge-pr:
+    runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      runs-on: ubuntu-latest
 
     steps:
     - name: Code Checkout
       uses: actions/checkout@v4
 
-    - name: Fusão do Pull Request
+    - name: Merge Request
       run: |
         git config --global user.email "victorvmaciel@gmail.com"
         git config --global user.name "Victor Maciel"
