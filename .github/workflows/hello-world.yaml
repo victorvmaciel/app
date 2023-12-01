@@ -15,7 +15,7 @@ jobs:
 
     - name: Fusão do Pull Request
       run: |
-        git config --global victorvmaciel@gmail.com
+        git config --global user.email "victorvmaciel@gmail.com"
         git config --global user.name "Victor Maciel"
 
         PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
