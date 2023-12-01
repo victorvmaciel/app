@@ -20,6 +20,7 @@ jobs:
       run: |
         git config --global user.email "victorvmaciel@gmail.com"
         git config --global user.name "Victor Maciel"
+        git remote set-url origin "https://$GITHUB_TOKEN@github.com/victorvmaciel/app.git"
 
         PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
 
