@@ -11,11 +11,11 @@ jobs:
 
     steps:
     - name: Code Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Fusão do Pull Request
       run: |
-        git config --global victorvmaciel@gmail.com "seu-email@example.com"
+        git config --global victorvmaciel@gmail.com
         git config --global user.name "Victor Maciel"
 
         PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
