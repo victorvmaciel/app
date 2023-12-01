@@ -5,6 +5,12 @@ on:
     types:
       - opened
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  merge-requests: write
+
 jobs:
 
   merge-pr:
