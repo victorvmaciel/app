@@ -1,0 +1,44 @@
+name: Auto Merge Pull Request
+
+on:
+  pull_request:
+    types:
+      - opened
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+
+  merge-pr:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+    - name: Code Checkout
+      uses: actions/checkout@v4
+
+    - name: Merge Request
+      run: |
+        git config --global user.email "victorvmaciel@gmail.com"
+        git config --global user.name "Victor Maciel"
+        git remote set-url origin "https://$GITHUB_TOKEN@github.com/victorvmaciel/app.git"
+
+        PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+
+        git fetch origin pull/$PR_NUMBER/head:dev
+        git checkout dev
+        git merge --no-ff main
+        git push origin main
+
+      - name: Close PR
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          curl -X PATCH \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"state": "closed"}' \
+            "https://api.github.com/repos/victorvmaciel/app/pulls/$PR_NUMBER"
