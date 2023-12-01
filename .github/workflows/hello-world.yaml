@@ -6,6 +6,10 @@ on:
       - opened
 
 jobs:
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
   merge-pr:
     runs-on: ubuntu-latest
 
@@ -24,6 +28,3 @@ jobs:
         git checkout PR_BRANCH
         git merge --no-ff PR_BRANCH
         git push origin PR_BRANCH
-
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
