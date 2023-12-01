@@ -29,7 +29,16 @@ jobs:
 
         PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
 
-        git fetch origin pull/$PR_NUMBER/head:PR_BRANCH
-        git checkout PR_BRANCH
-        git merge --no-ff PR_BRANCH
-        git push origin PR_BRANCH
+        git fetch origin pull/$PR_NUMBER/head:dev
+        git checkout dev
+        git merge --no-ff main
+        git push origin main
+
+      - name: Close PR
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          curl -X PATCH \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"state": "closed"}' \
+            "https://api.github.com/repos/victorvmaciel/app/pulls/$PR_NUMBER"
