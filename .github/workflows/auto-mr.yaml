@@ -42,9 +42,8 @@ jobs:
 
       - id:  add_label
         uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
         with:
-          labels: bug
+          labels: automerge
  
       - id: automerge
         name: automerge
