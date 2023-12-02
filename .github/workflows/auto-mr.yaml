@@ -24,18 +24,6 @@ permissions:
   pull-requests: write
 
 jobs:
-  add_labels:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-
-      - name: add_labels
-        uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
-        with:
-          labels: automerge        
-
   automerge:
     runs-on: ubuntu-latest
     env:
@@ -49,6 +37,8 @@ jobs:
       MERGE_REQUIRED_APPROVALS: "0"
       UPDATE_LABELS: ""
     steps:
+      - id: labeler
+        uses: actions/labeler@v4
       - id: automerge
         name: automerge
         uses: "pascalgn/automerge-action@v0.15.6"
