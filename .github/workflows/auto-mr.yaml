@@ -37,6 +37,9 @@ jobs:
       MERGE_REQUIRED_APPROVALS: "0"
       UPDATE_LABELS: ""
     steps:
+      - id: checkout
+        uses: actions/checkout@v3
+
       - id: labeler
         uses: srvaroa/labeler@master
         with:
