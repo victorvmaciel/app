@@ -38,7 +38,9 @@ jobs:
       UPDATE_LABELS: ""
     steps:
       - id: labeler
-        uses: actions/labeler@v4
+        uses: srvaroa/labeler@v0.8
+        with:
+          config_path: .github/labeler_config.yml
       - id: automerge
         name: automerge
         uses: "pascalgn/automerge-action@v0.15.6"
