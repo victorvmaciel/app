@@ -24,6 +24,18 @@ permissions:
   pull-requests: write
 
 jobs:
+  add_labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: add_labels
+        uses: actions-ecosystem/action-add-labels@v1
+        if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
+        with:
+          labels: automerge        
+
   automerge:
     runs-on: ubuntu-latest
     env:
@@ -43,8 +55,3 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
-      - id: add_labels
-        uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
-        with:
-          labels: automerge
