@@ -37,8 +37,14 @@ jobs:
       MERGE_REQUIRED_APPROVALS: "0"
       UPDATE_LABELS: ""
     steps:
+      - id: labeler
+        uses: srvaroa/labeler@master
+        with:
+          config_path: .github/labeler_config.yml
+ 
       - id: automerge
         name: automerge
         uses: "pascalgn/automerge-action@v0.15.6"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
