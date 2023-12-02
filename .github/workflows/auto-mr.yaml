@@ -40,11 +40,10 @@ jobs:
       - id: checkout
         uses: actions/checkout@v3
 
-      - id: labeler
-        uses: srvaroa/labeler@master
+      - id:  add_label
+        uses: actions-ecosystem/action-add-labels@v1
         with:
-          use_local_config: false
-          config_path: .github/labeler.yml
+          labels: automerge
  
       - id: automerge
         name: automerge
