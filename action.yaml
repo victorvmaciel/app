@@ -32,6 +32,6 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'node16'
+  image: 'docker://node:16'
   env:
     GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
