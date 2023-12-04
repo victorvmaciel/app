@@ -1,6 +1,6 @@
 name: 'Automerge Action'
 description: 'Automatically merge pull requests based on specified conditions.'
-author: 'Seu Nome'
+author: 'Victor'
 inputs:
   GITHUB_TOKEN:
     description: 'GitHub Token'
