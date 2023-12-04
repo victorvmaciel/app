@@ -1,0 +1,37 @@
+name: 'Automerge Action'
+description: 'Automatically merge pull requests based on specified conditions.'
+author: 'Seu Nome'
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub Token'
+    required: true
+  MERGE_LABELS:
+    description: 'Labels for triggering merge'
+    required: true
+  MERGE_REMOVE_LABELS:
+    description: 'Labels to be removed after successful merge'
+    required: false
+  MERGE_COMMIT_MESSAGE:
+    description: 'Commit message for the merge'
+    required: false
+  MERGE_FORKS:
+    description: 'Allow merging pull requests from forks'
+    required: false
+  MERGE_RETRIES:
+    description: 'Number of retries for the merge operation'
+    required: false
+  MERGE_RETRY_SLEEP:
+    description: 'Sleep time between merge retries (in milliseconds)'
+    required: false
+  MERGE_REQUIRED_APPROVALS:
+    description: 'Number of required approvals for the merge'
+    required: false
+  UPDATE_LABELS:
+    description: 'Labels to add to the pull request after a successful merge'
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/pascalgn/automerge-action:v0.15.6'
+  env:
+    GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
